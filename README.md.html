@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Description" content="EDA analysis on loan dataset from Lending Club Case Study to understand the driving factors (or driver variables) behind loan default - lending-club-case-study/README.md at main · akashkriplani/lending-club-case-study">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.7">
+  <style type="text/css">
+    body {background-color: #0b0c0f}
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #e8f1fa; -webkit-text-stroke: #ffffff; background-color: #1539e0}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #e8f1fa; -webkit-text-stroke: #e8f1fa; background-color: #1539e0; min-height: 16.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #e8f1fa; -webkit-text-stroke: #e8f1fa; min-height: 16.0px}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 16.0px 'Helvetica Neue'; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85); background-color: #aeb9c7; background-color: rgba(174, 185, 199, 0.4); min-height: 18.0px}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 16.0px Times; color: #ffffff; -webkit-text-stroke: #ffffff; min-height: 19.0px}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 16.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: #ffffff; min-height: 18.0px}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: right; font: 14.0px Times; color: #0000e9; -webkit-text-stroke: #ffffff}
+    p.p17 {margin: 0.0px 0.0px 0.0px 0.0px; font: 20.0px 'Helvetica Neue'; color: #e8f1fa; -webkit-text-stroke: #e8f1fa; min-height: 24.0px}
+    p.p18 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #6c737d; -webkit-text-stroke: #6c737d}
+    p.p23 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #6c737d; -webkit-text-stroke: #6c737d; min-height: 14.0px}
+    p.p24 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #6c737d; -webkit-text-stroke: #6c737d}
+    li.li9 {margin: 0.0px 0.0px 0.0px 0.0px; font: 20.0px Times; color: #131417; -webkit-text-stroke: #131417}
+    li.li10 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #0000e9; -webkit-text-stroke: #000000}
+    li.li11 {margin: 0.0px 0.0px 0.0px 0.0px; font: 16.0px Times; color: #131417; -webkit-text-stroke: #131417}
+    li.li12 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #373f49; -webkit-text-stroke: #000000}
+    li.li13 {margin: 0.0px 0.0px 0.0px 0.0px; font: 16.0px 'Helvetica Neue'; color: #ffffff}
+    li.li14 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Times; color: #15171a; -webkit-text-stroke: #15171a}
+    li.li15 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px 'Helvetica Neue'; color: #ffffff; min-height: 16.0px}
+    li.li16 {margin: 0.0px 0.0px 0.0px 0.0px; font: 20.0px Times; color: #131417; min-height: 24.0px}
+    li.li19 {margin: 0.0px 8.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #e8f1fa}
+    li.li20 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #e8f1fa}
+    li.li21 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 14.0px 'Helvetica Neue'; color: #0000e9; -webkit-text-stroke: #000000}
+    li.li26 {margin: 0.0px 8.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #6c737d; -webkit-text-stroke: #000000}
+    li.li27 {margin: 0.0px 16.0px 0.0px 0.0px; font: 12.0px 'Helvetica Neue'; color: #6c737d; -webkit-text-stroke: #6c737d}
+    span.s1 {font-kerning: none}
+    span.s2 {font-kerning: none; background-color: #16171a}
+    span.s3 {text-decoration: underline ; font-kerning: none; background-color: #16171a}
+    span.s4 {text-decoration: underline ; font-kerning: none}
+    span.s5 {background-color: #ffffff; -webkit-text-stroke: 0px #000000}
+    span.s6 {font-kerning: none; background-color: #ffffff}
+    span.s7 {-webkit-text-stroke: 0px #000000}
+    span.s8 {font: 16.0px Times; text-decoration: underline ; font-kerning: none; color: #131417; background-color: #ffffff; -webkit-text-stroke: 0px #131417}
+    span.s9 {font: 16.0px Times; font-kerning: none; color: #131417; -webkit-text-stroke: 0px #131417}
+    span.s10 {text-decoration: underline ; font-kerning: none; background-color: #ffffff}
+    span.s11 {font: 16.0px 'Helvetica Neue'; color: #ffffff; -webkit-text-stroke: 0px #000000}
+    span.s12 {font: 16.0px 'Helvetica Neue'; font-kerning: none; color: #ffffff; -webkit-text-stroke: 0px #ffffff}
+    span.s13 {font: 14.0px 'Helvetica Neue'; text-decoration: underline ; font-kerning: none; color: #373f49}
+    span.s14 {font-kerning: none; -webkit-text-stroke: 0px #ffffff}
+    span.s15 {font: 20.0px Times; background-color: #ffffff; -webkit-text-stroke: 0px #000000}
+    span.s16 {font: 20.0px Times; font-kerning: none; background-color: #ffffff}
+    span.s17 {font: 20.0px Times; font-kerning: none}
+    span.s18 {font: 14.0px Times; text-decoration: underline ; font-kerning: none; color: #15171a; background-color: #ffffff; -webkit-text-stroke: 0px #15171a}
+    span.s19 {font: 16.0px Times; font-kerning: none; background-color: #ffffff}
+    span.s20 {font: 16.0px Times; color: #0000e9; background-color: #ffffff; -webkit-text-stroke: 0px #000000}
+    span.s21 {text-decoration: underline ; font-kerning: none; -webkit-text-stroke: 0px #131417}
+    span.s22 {font-kerning: none; background-color: transparent; -webkit-text-stroke: 0px #131417}
+    span.s23 {background-color: #ffffff}
+    span.s24 {font-kerning: none; background-color: #0b0c0f}
+    span.s25 {font: 14.0px Times; -webkit-text-stroke: 0px #000000}
+    span.s26 {text-decoration: underline ; font-kerning: none; background-color: #0b0c0f}
+    span.s27 {font: 14.0px 'Helvetica Neue'; font-kerning: none; color: #6c737d; -webkit-text-stroke: 0px #6c737d}
+    span.s28 {font: 14.0px 'Helvetica Neue'; text-decoration: underline ; font-kerning: none; background-color: #0b0c0f}
+    span.s29 {font: 14.0px 'Helvetica Neue'; font-kerning: none}
+    span.s30 {font: 12.0px 'Helvetica Neue'; text-decoration: underline ; font-kerning: none; color: #6c737d}
+    ul.ul1 {list-style-type: none}
+    ul.ul2 {list-style-type: disc}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">Skip to content</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p3"><span class="s1"></span><br></p>
+<h2 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 24.0px Times; color: #ffffff; -webkit-text-stroke: #ffffff"><span class="s2"><b>Navigation Menu</b></span></h2>
+<p class="p5"><span class="s1"></span><br></p>
+<p class="p6"><span class="s1"></span><br></p>
+<p class="p7"><span class="s1"></span><br></p>
+<p class="p8"><span class="s3"><a href="file:///login?return_to=https%3A%2F%2Fgithub.com%2Fakashkriplani%2Flending-club-case-study%2Fblob%2Fmain%2FREADME.md">Sign in<span class="s4"></span></a></span></p>
+<ul class="ul1">
+  <li class="li9"><span class="s5"><b></b></span><span class="s6"><b>Product<span class="Apple-converted-space"> </span></b></span></li>
+  <ul class="ul1">
+    <li class="li10"><span class="s7"><a href="https://github.com/features/copilot"><span class="s1"><br>
+</span><span class="s8"><b>GitHub Copilot</b></span><span class="s9"><b><br>
+</b></span><span class="s10">Write better code with AI<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li10"><span class="s7"><a href="https://github.com/features/security"><span class="s1"><br>
+</span><span class="s8"><b>Security</b></span><span class="s9"><b><br>
+</b></span><span class="s10">Find and fix vulnerabilities<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li10"><span class="s7"><a href="https://github.com/features/actions"><span class="s1"><br>
+</span><span class="s8"><b>Actions</b></span><span class="s9"><b><br>
+</b></span><span class="s10">Automate any workflow<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li10"><span class="s7"><a href="https://github.com/features/codespaces"><span class="s1"><br>
+</span><span class="s8"><b>Codespaces</b></span><span class="s9"><b><br>
+</b></span><span class="s10">Instant dev environments<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li10"><span class="s7"><a href="https://github.com/features/issues"><span class="s1"><br>
+</span><span class="s8"><b>Issues</b></span><span class="s9"><b><br>
+</b></span><span class="s10">Plan and track work<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li10"><span class="s7"><a href="https://github.com/features/code-review"><span class="s1"><br>
+</span><span class="s8"><b>Code Review</b></span><span class="s9"><b><br>
+</b></span><span class="s10">Manage code changes<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li10"><span class="s7"><a href="https://github.com/features/discussions"><span class="s1"><br>
+</span><span class="s8"><b>Discussions</b></span><span class="s9"><b><br>
+</b></span><span class="s10">Collaborate outside of code<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li10"><span class="s7"><a href="https://github.com/features/code-search"><span class="s1"><br>
+</span><span class="s8"><b>Code Search</b></span><span class="s9"><b><br>
+</b></span><span class="s10">Find more, search less<span class="Apple-converted-space"> </span></span></a></span></li>
+  </ul>
+  <li class="li11"><span class="s11"></span><span class="s12"><br>
+<br>
+</span><span class="s6"><b>Explore</b></span></li>
+  <ul class="ul1">
+    <li class="li12"><span class="s5"><a href="https://github.com/features"><span class="s13">All features<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="https://docs.github.com/"><span class="s13">Documentation<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="https://skills.github.com/"><span class="s13">GitHub Skills<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="https://github.blog/"><span class="s13">Blog<span class="Apple-converted-space"> </span></span></a></span></li>
+  </ul>
+  <li class="li13"><span class="s14"><br>
+</span></li>
+  <li class="li11"><span class="s15"><b></b></span><span class="s16"><b>Solutions </b></span><span class="s17"><b><br>
+</b></span><span class="s6"><b>By company size</b></span></li>
+  <ul class="ul1">
+    <li class="li12"><span class="s5"><a href="https://github.com/enterprise"><span class="s13">Enterprises<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="https://github.com/team"><span class="s13">Small and medium teams<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="https://github.com/enterprise/startups"><span class="s13">Startups<span class="Apple-converted-space"> </span></span></a></span></li>
+  </ul>
+  <li class="li11"><span class="s11"></span><span class="s12"><br>
+</span><span class="s6"><b>By use case</b></span></li>
+  <ul class="ul1">
+    <li class="li12"><span class="s5"><a href="file:///solutions/use-case/devsecops"><span class="s13">DevSecOps<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="file:///solutions/use-case/devops"><span class="s13">DevOps<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="file:///solutions/use-case/ci-cd"><span class="s13">CI/CD<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="file:///solutions/use-case"><span class="s13">View all use cases<span class="Apple-converted-space"> </span></span></a></span></li>
+  </ul>
+  <li class="li11"><span class="s11"></span><span class="s12"><br>
+<br>
+</span><span class="s6"><b>By industry</b></span></li>
+  <ul class="ul1">
+    <li class="li12"><span class="s5"><a href="file:///solutions/industry/healthcare"><span class="s13">Healthcare<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="file:///solutions/industry/financial-services"><span class="s13">Financial services<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="file:///solutions/industry/manufacturing"><span class="s13">Manufacturing<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="file:///solutions/industry/government"><span class="s13">Government<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="file:///solutions/industry"><span class="s13">View all industries<span class="Apple-converted-space"> </span></span></a></span></li>
+  </ul>
+  <li class="li14"><span class="s11"></span><span class="s12"><br>
+<br>
+<a href="file:///solutions"><span class="s18">View all solutions<span class="Apple-converted-space"> </span></span></a></span></li>
+  <li class="li9"><span class="s5"><b></b></span><span class="s6"><b>Resources </b></span><span class="s1"><b><br>
+</b></span><span class="s19"><b>Topics</b></span></li>
+  <ul class="ul1">
+    <li class="li12"><span class="s5"><a href="file:///resources/articles/ai"><span class="s13">AI<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="file:///resources/articles/devops"><span class="s13">DevOps<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="file:///resources/articles/security"><span class="s13">Security<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="file:///resources/articles/software-development"><span class="s13">Software Development<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="file:///resources/articles"><span class="s13">View all<span class="Apple-converted-space"> </span></span></a></span></li>
+  </ul>
+  <li class="li11"><span class="s11"></span><span class="s12"><br>
+<br>
+</span><span class="s6"><b>Explore</b></span></li>
+  <ul class="ul1">
+    <li class="li12"><span class="s5"><a href="https://resources.github.com/learn/pathways"><span class="s13">Learning Pathways<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="https://resources.github.com/"><span class="s13">White papers, Ebooks, Webinars<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="https://github.com/customer-stories"><span class="s13">Customer Stories<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="https://partner.github.com/"><span class="s13">Partners<span class="Apple-converted-space"> </span></span></a></span></li>
+  </ul>
+  <li class="li13"><span class="s14"><br>
+</span></li>
+  <li class="li9"><span class="s5"><b></b></span><span class="s6"><b>Open Source<span class="Apple-converted-space"> </span></b></span></li>
+  <ul class="ul1">
+    <li class="li12"><span class="s20"><b></b><a href="file:///sponsors"><span class="s21"><b>GitHub Sponsors</b></span><span class="s22"><b><br>
+</b></span><span class="s13">Fund open source developers<span class="Apple-converted-space"> </span></span></a></span></li>
+  </ul>
+  <li class="li15"></li>
+  <ul class="ul1">
+    <li class="li12"><span class="s20"><b></b><a href="https://github.com/readme"><span class="s21"><b>The ReadME Project</b></span><span class="s22"><b><br>
+</b></span><span class="s13">GitHub community articles<span class="Apple-converted-space"> </span></span></a></span></li>
+  </ul>
+  <li class="li11"><span class="s11"></span><span class="s12"><br>
+</span><span class="s6"><b>Repositories</b></span></li>
+  <ul class="ul1">
+    <li class="li12"><span class="s5"><a href="https://github.com/topics"><span class="s13">Topics<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="https://github.com/trending"><span class="s13">Trending<span class="Apple-converted-space"> </span></span></a></span></li>
+    <li class="li12"><span class="s5"><a href="https://github.com/collections"><span class="s13">Collections<span class="Apple-converted-space"> </span></span></a></span></li>
+  </ul>
+  <li class="li13"><span class="s14"><br>
+</span></li>
+  <li class="li16"><span class="s23"><b></b></span></li>
+</ul>
+<p class="p17"><span class="s1"></span><br></p>
+<p class="p18"><span class="s24">Public</span></p>
+<ul class="ul2">
+  <li class="li19"></li>
+  <li class="li19"></li>
+  <li class="li20"></li>
+</ul>
+<p class="p3"><span class="s1"></span><br></p>
+<ul class="ul1">
+  <li class="li21"><span class="s25"><b></b><a href="file:///akashkriplani/lending-club-case-study"><span class="s1"><b><br>
+</b></span><span class="s26"><b>Code</b></span><span class="s1"><b><br>
+</b></span></a><a href="file:///akashkriplani/lending-club-case-study/issues"><span class="s27"><br>
+</span><span class="s28">Issues</span><span class="s29"><br>
+</span></a><a href="file:///akashkriplani/lending-club-case-study/pulls"><span class="s27"><br>
+</span><span class="s28">Pull requests</span><span class="s29"><br>
+</span></a><a href="file:///akashkriplani/lending-club-case-study/actions"><span class="s27"><br>
+</span><span class="s28">Actions</span><span class="s29"><br>
+</span></a><a href="file:///akashkriplani/lending-club-case-study/projects"><span class="s27"><br>
+</span><span class="s28">Projects</span><span class="s29"><br>
+</span></a><a href="file:///akashkriplani/lending-club-case-study/security"><span class="s27"><br>
+</span><span class="s28">Security</span><span class="s29"><br>
+<br>
+</span></a><a href="file:///akashkriplani/lending-club-case-study/pulse"><span class="s27"><br>
+</span><span class="s28">Insights</span></a></span></li>
+</ul>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p3"><span class="s1"></span><br></p>
+<h2 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 24.0px Times; color: #6c737d; -webkit-text-stroke: #6c737d"><span class="s1"><b>Footer</b></span></h2>
+<p class="p23"><span class="s1"></span><br></p>
+<p class="p24"><span class="s1">© 2024 GitHub, Inc.</span></p>
+<h3 style="margin: 0.0px 0.0px 0.0px 0.0px; font: 20.0px Times; color: #6c737d; -webkit-text-stroke: #6c737d"><span class="s1"><b>Footer navigation</b></span></h3>
+<ul class="ul1">
+  <li class="li26"><span class="s7"><a href="https://docs.github.com/site-policy/github-terms/github-terms-of-service"><span class="s30">Terms</span></a></span></li>
+  <li class="li26"><span class="s7"><a href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement"><span class="s30">Privacy</span></a></span></li>
+  <li class="li26"><span class="s7"><a href="https://github.com/security"><span class="s30">Security</span></a></span></li>
+  <li class="li26"><span class="s7"><a href="https://www.githubstatus.com/"><span class="s30">Status</span></a></span></li>
+  <li class="li26"><span class="s7"><a href="https://docs.github.com/"><span class="s30">Docs</span></a></span></li>
+  <li class="li26"><span class="s7"><a href="https://support.github.com/?tags=dotcom-footer"><span class="s30">Contact</span></a></span></li>
+  <li class="li27"><span class="s7"></span><span class="s1">Manage cookies</span></li>
+  <li class="li27"><span class="s7"></span><span class="s1">Do not share my personal information</span></li>
+</ul>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p3"><span class="s1"></span><br></p>
+</body>
+</html>
